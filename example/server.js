@@ -4,14 +4,16 @@ const path = require('path');
 const app = express();
 const port = 3008;
 
-const dir = path.resolve(process.cwd(), './example/stores/');
-require('../index.js')(dir, null, (status) => {
+const dir1 = path.resolve(process.cwd(), './example/stores/wch1/');
+const dir2 = path.resolve(process.cwd(), './example/stores/wch2/');
+const callback = (status) => {
   const createStore = require('./stores');
   if (createStore && typeof createStore === 'function') {
     const stores = createStore();
     console.log('watch----->', stores);
   }
-});
+}
+require('../index.js')([dir1, dir2], null, callback);
 app.get('*', function(req, res) {
   const createStore = require('./stores');
   const stores = createStore();

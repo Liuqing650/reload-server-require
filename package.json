@@ -1,11 +1,12 @@
 {
   "name": "reload-server-require",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./example/server.js"
+    "start": "node ./example/server.js",
+    "build": "babel index.js --out-file lib.js",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,11 +27,17 @@
   },
   "homepage": "https://github.com/Liuqing650/reload-server-require#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "chokidar": "^2.0.4",
     "dependency-graph": "^0.7.2",
     "invalidate-module": "^1.0.0"
   },
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
     "express": "^4.16.4"
+  },
+  "jest": {
+    "testURL": "http://localhost/"
   }
 }
